@@ -29,6 +29,13 @@ class Server {
         this.app.use("/rest/user", userRoutes_1.default);
     }
     start() {
+        this.socke.on('connection', (socket) => {
+            console.log('usuario conectado');
+            socket.on('message', (msg) => {
+                console.log(msg);
+                socket.broadcast.emit('messages', msg);
+            });
+        });
         this.httapp.listen(this.app.get('port'), () => {
             console.log('API NODEJS', this.app.get('port'));
         });

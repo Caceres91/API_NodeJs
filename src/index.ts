@@ -31,6 +31,13 @@ class Server {;
         }
 
         start(){
+            this.socke.on('connection', (socket: io.Socket) => {
+                console.log('usuario conectado');
+                socket.on('message', (msg: string) => {
+                    console.log(msg);
+                    socket.broadcast.emit('messages', msg);
+                })
+            });
             this.httapp.listen(this.app.get('port'), () => {
             console.log('API NODEJS', this.app.get('port'));
             });
