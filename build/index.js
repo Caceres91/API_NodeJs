@@ -9,6 +9,7 @@ const cors_1 = __importDefault(require("cors"));
 const http_1 = __importDefault(require("http"));
 const socket_io_1 = __importDefault(require("socket.io"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
+const publicacionRoutes_1 = __importDefault(require("./routes/publicacionRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -27,6 +28,7 @@ class Server {
     }
     routes() {
         this.app.use("/rest/user", userRoutes_1.default);
+        this.app.use("/api/publicacion", publicacionRoutes_1.default);
     }
     start() {
         this.socke.on('connection', (socket) => {

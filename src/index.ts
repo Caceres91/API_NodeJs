@@ -5,6 +5,7 @@ import http from 'http';
 import io from 'socket.io';
 
 import userRoutes from './routes/userRoutes';
+import publicionRoutes from './routes/publicacionRoutes';
 
 class Server {;
     public app: Application;
@@ -28,6 +29,7 @@ class Server {;
 
         routes(): void{
             this.app.use("/rest/user", userRoutes);
+            this.app.use("/api/publicacion", publicionRoutes);
         }
 
         start(){
